@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Design Studio - AesthetiAI Interiors</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Faesthetiai6924back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+<script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-secondary-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="w-8 h-8 text-accent mr-3" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span class="text-xl font-accent font-semibold text-primary">AesthetiAI</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-secondary-500 hover:text-accent transition-colors">Home</a>
+                    <a href="ai_design_studio.html" class="text-primary font-medium hover:text-accent transition-colors">AI Studio</a>
+                    <a href="design_results_display.html" class="text-secondary-500 hover:text-accent transition-colors">Gallery</a>
+                    <a href="personal_dashboard.html" class="text-secondary-500 hover:text-accent transition-colors">Dashboard</a>
+                    <a href="signup_login.html" class="btn-secondary text-sm">Sign In</a>
+                    <button class="btn-primary text-sm" onclick="startNewProject()">New Project</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-surface transition-colors" id="mobile-menu-btn">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-secondary-200">
+                    <a href="homepage.html" class="block px-3 py-2 text-secondary-500 hover:text-accent">Home</a>
+                    <a href="ai_design_studio.html" class="block px-3 py-2 text-primary font-medium">AI Studio</a>
+                    <a href="design_results_display.html" class="block px-3 py-2 text-secondary-500 hover:text-accent">Gallery</a>
+                    <a href="personal_dashboard.html" class="block px-3 py-2 text-secondary-500 hover:text-accent">Dashboard</a>
+                    <a href="signup_login.html" class="block px-3 py-2 text-secondary-500 hover:text-accent">Sign In</a>
+                    <button class="btn-primary w-full text-center mt-2" onclick="startNewProject()">New Project</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Progress Breadcrumbs -->
+    <section class="pt-20 pb-4 bg-white border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-sm font-semibold">1</div>
+                        <span class="ml-2 text-sm font-medium text-primary">Upload</span>
+                    </div>
+                    <svg class="w-5 h-5 text-secondary-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-secondary-200 text-secondary-500 rounded-full flex items-center justify-center text-sm font-semibold">2</div>
+                        <span class="ml-2 text-sm text-secondary-500">Style Selection</span>
+                    </div>
+                    <svg class="w-5 h-5 text-secondary-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-secondary-200 text-secondary-500 rounded-full flex items-center justify-center text-sm font-semibold">3</div>
+                        <span class="ml-2 text-sm text-secondary-500">AI Processing</span>
+                    </div>
+                    <svg class="w-5 h-5 text-secondary-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-secondary-200 text-secondary-500 rounded-full flex items-center justify-center text-sm font-semibold">4</div>
+                        <span class="ml-2 text-sm text-secondary-500">Results</span>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex items-center space-x-3">
+                    <button class="p-2 text-secondary-500 hover:text-accent transition-colors" onclick="undoAction()" title="Undo">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
+                        </svg>
+                    </button>
+                    <button class="p-2 text-secondary-500 hover:text-accent transition-colors" onclick="redoAction()" title="Redo">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10h-10a8 8 0 00-8 8v2m18-10l-6-6m6 6l-6 6"/>
+                        </svg>
+                    </button>
+                    <button class="btn-secondary text-sm" onclick="saveProject()">Save Project</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Studio Interface -->
+    <section class="py-8 bg-surface min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Upload & Preview Panel -->
+                <div class="lg:col-span-2">
+                    <!-- Upload Area -->
+                    <div class="card mb-6" id="upload-section">
+                        <div class="text-center mb-6">
+                            <h2 class="text-2xl font-accent font-semibold text-primary mb-2">Upload Your Room Photo</h2>
+                            <p class="text-secondary-500">Drag and drop your image or click to browse. Supports JPG, PNG, and HEIC formats.</p>
+                        </div>
+
+                        <!-- Drag & Drop Zone -->
+                        <div class="border-2 border-dashed border-secondary-300 rounded-lg p-8 text-center hover:border-accent transition-colors duration-300" id="drop-zone" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                            <div id="upload-content">
+                                <svg class="w-16 h-16 text-secondary-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                </svg>
+                                <h3 class="text-lg font-semibold text-primary mb-2">Drop your image here</h3>
+                                <p class="text-secondary-500 mb-4">or click to browse from your device</p>
+                                <input type="file" id="file-input" class="hidden" accept="image/*" multiple onchange="handleFileSelect(event)" />
+                                <button class="btn-primary" onclick="document.getElementById('file-input').click()">
+                                    Choose Files
+                                </button>
+                                <p class="text-xs text-secondary-400 mt-2">Maximum file size: 10MB per image</p>
+                            </div>
+                        </div>
+
+                        <!-- Batch Upload Progress -->
+                        <div id="upload-progress" class="hidden mt-6">
+                            <h3 class="text-lg font-semibold text-primary mb-4">Uploading Images</h3>
+                            <div id="progress-list" class="space-y-3">
+                                <!-- Progress items will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Preview Grid -->
+                    <div class="card" id="preview-section" style="display: none;">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold text-primary">Uploaded Images</h3>
+                            <button class="btn-secondary text-sm" onclick="clearAllImages()">Clear All</button>
+                        </div>
+                        <div id="image-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <!-- Preview images will be inserted here -->
+                        </div>
+                        <div class="mt-6 flex justify-center">
+                            <button class="btn-primary" onclick="proceedToStyleSelection()">
+                                Continue to Style Selection
+                                <svg class="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Style Selection & Tools Panel -->
+                <div class="lg:col-span-1">
+                    <!-- Smart Search -->
+                    <div class="card mb-6">
+                        <h3 class="text-lg font-semibold text-primary mb-4">AI Design Assistant</h3>
+                        <div class="relative">
+                            <input type="text" placeholder="Describe your dream room..." class="input-field pr-12" id="ai-search" onkeypress="handleSearchKeypress(event)" />
+                            <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-accent hover:text-accent-500 transition-colors" onclick="processAISearch()">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="text-xs text-secondary-500 mt-2">Try: "Modern minimalist living room with warm lighting"</p>
+                    </div>
+
+                    <!-- Style Categories -->
+                    <div class="card mb-6" id="style-selection" style="display: none;">
+                        <h3 class="text-lg font-semibold text-primary mb-4">Choose Your Style</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="style-option" data-style="modern" onclick="selectStyle('modern')">
+                                <img src="https://images.unsplash.com/photo-1607861448114-a04c3fbf7b7f" alt="Modern interior design style with clean lines and contemporary furniture" class="w-full h-20 object-cover rounded-lg mb-2" onerror="this.src='https://images.unsplash.com/photo-1711873314750-39f3b0d45f09'; this.onerror=null;" />
+                                <span class="text-sm font-medium text-primary">Modern</span>
+                            </div>
+                            <div class="style-option" data-style="minimalist" onclick="selectStyle('minimalist')">
+                                <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&dpr=2" alt="Minimalist interior design with clean spaces and simple furniture" class="w-full h-20 object-cover rounded-lg mb-2" onerror="this.src='https://images.unsplash.com/photo-1603327817999-2f5c3588de74'; this.onerror=null;" />
+                                <span class="text-sm font-medium text-primary">Minimalist</span>
+                            </div>
+                            <div class="style-option" data-style="scandinavian" onclick="selectStyle('scandinavian')">
+                                <img src="https://images.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_960_720.jpg" alt="Scandinavian interior design featuring light woods and cozy textiles" class="w-full h-20 object-cover rounded-lg mb-2" onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3'; this.onerror=null;" />
+                                <span class="text-sm font-medium text-primary">Scandinavian</span>
+                            </div>
+                            <div class="style-option" data-style="industrial" onclick="selectStyle('industrial')">
+                                <img src="https://images.unsplash.com/photo-1701912229133-aa97d8882e26" alt="Industrial interior design with exposed brick and metal fixtures" class="w-full h-20 object-cover rounded-lg mb-2" onerror="this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3'; this.onerror=null;" />
+                                <span class="text-sm font-medium text-primary">Industrial</span>
+                            </div>
+                            <div class="style-option" data-style="bohemian" onclick="selectStyle('bohemian')">
+                                <img src="https://images.unsplash.com/photo-1691834544015-ae095b405268" alt="Bohemian interior design with colorful textiles and eclectic decor" class="w-full h-20 object-cover rounded-lg mb-2" onerror="this.src='https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&dpr=2'; this.onerror=null;" />
+                                <span class="text-sm font-medium text-primary">Bohemian</span>
+                            </div>
+                            <div class="style-option" data-style="traditional" onclick="selectStyle('traditional')">
+                                <img src="https://images.unsplash.com/photo-1710949013694-a7571d4c20cf" alt="Traditional interior design with classic furniture and warm colors" class="w-full h-20 object-cover rounded-lg mb-2" onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3'; this.onerror=null;" />
+                                <span class="text-sm font-medium text-primary">Traditional</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button class="btn-primary w-full" onclick="startAIProcessing()" id="process-btn" disabled>
+                                Start AI Enhancement
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- AI Processing Visualization -->
+                    <div class="card mb-6" id="processing-section" style="display: none;">
+                        <h3 class="text-lg font-semibold text-primary mb-4">AI Processing</h3>
+                        <div class="space-y-4">
+                            <div class="processing-step" id="step-analysis">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full bg-accent flex items-center justify-center mr-3">
+                                        <svg class="w-4 h-4 text-white animate-spin" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm font-medium text-primary">Analyzing room structure...</span>
+                                </div>
+                                <div class="ml-9 mt-2">
+                                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                                        <div class="bg-accent h-2 rounded-full transition-all duration-500" style="width: 0%" id="analysis-progress"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="processing-step" id="step-style">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full bg-secondary-200 flex items-center justify-center mr-3">
+                                        <svg class="w-4 h-4 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm text-secondary-500">Applying style preferences...</span>
+                                </div>
+                            </div>
+
+                            <div class="processing-step" id="step-enhancement">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full bg-secondary-200 flex items-center justify-center mr-3">
+                                        <svg class="w-4 h-4 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm text-secondary-500">Generating enhancements...</span>
+                                </div>
+                            </div>
+
+                            <div class="processing-step" id="step-finalize">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full bg-secondary-200 flex items-center justify-center mr-3">
+                                        <svg class="w-4 h-4 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm text-secondary-500">Finalizing results...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 text-center">
+                            <p class="text-sm text-secondary-500 mb-2">Estimated time: 2-3 minutes</p>
+                            <button class="btn-secondary text-sm" onclick="cancelProcessing()">Cancel Processing</button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Tips -->
+                    <div class="card">
+                        <h3 class="text-lg font-semibold text-primary mb-4">Pro Tips</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                                <div>
+                                    <p class="text-sm font-medium text-primary">Good Lighting</p>
+                                    <p class="text-xs text-secondary-500">Natural light photos work best for AI analysis</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                <div>
+                                    <p class="text-sm font-medium text-primary">Full Room View</p>
+                                    <p class="text-xs text-secondary-500">Capture the entire space for better results</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-accent mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                                <div>
+                                    <p class="text-sm font-medium text-primary">High Resolution</p>
+                                    <p class="text-xs text-secondary-500">Upload images at least 1080p for best quality</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-accent font-semibold text-primary">AI Enhancement Complete!</h2>
+                    <button onclick="closeResultsModal()" class="text-secondary-500 hover:text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-primary mb-3">Original</h3>
+                        <div class="aspect-w-16 aspect-h-12 bg-secondary-100 rounded-lg overflow-hidden">
+                            <img id="original-result" src alt="Original room photo before AI enhancement" class="w-full h-full object-cover" />
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-primary mb-3">AI Enhanced</h3>
+                        <div class="aspect-w-16 aspect-h-12 bg-secondary-100 rounded-lg overflow-hidden">
+                            <img id="enhanced-result" src alt="AI-enhanced room design with improved styling and layout" class="w-full h-full object-cover" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn-primary" onclick="downloadResult()">
+                        Download Enhanced Image
+                        <svg class="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                    </button>
+                    <button class="btn-secondary" onclick="viewInGallery()">View in Gallery</button>
+                    <button class="btn-secondary" onclick="startNewProject()">Start New Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-accent mr-3" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <span class="text-xl font-accent font-semibold">AesthetiAI</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Transforming spaces through the power of artificial intelligence and design expertise.</p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="homepage.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="ai_design_studio.html" class="text-gray-300 hover:text-white transition-colors">AI Studio</a></li>
+                        <li><a href="design_results_display.html" class="text-gray-300 hover:text-white transition-colors">Gallery</a></li>
+                        <li><a href="personal_dashboard.html" class="text-gray-300 hover:text-white transition-colors">Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Stay Updated</h3>
+                    <p class="text-gray-300 mb-4">Get design tips and AI insights delivered to your inbox.</p>
+                    <form class="flex flex-col space-y-2">
+                        <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-lg bg-primary-700 text-white placeholder-gray-400 border border-primary-600 focus:outline-none focus:ring-2 focus:ring-accent" />
+                        <button type="submit" class="btn-primary text-sm">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-primary-700 pt-8 text-center">
+                <p class="text-gray-400">© 2025 AesthetiAI Interiors. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button class="bg-accent text-white w-14 h-14 rounded-full shadow-lg hover:bg-accent-500 transition-all duration-300 hover:scale-110 flex items-center justify-center" onclick="toggleChat()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Chat Widget (Hidden by default) -->
+    <div id="chat-widget" class="fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-xl border border-secondary-200 z-50 hidden">
+        <div class="bg-accent text-white p-4 rounded-t-lg flex justify-between items-center">
+            <h3 class="font-semibold">AI Design Assistant</h3>
+            <button onclick="toggleChat()" class="text-white hover:text-gray-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <div class="p-4 h-64 overflow-y-auto">
+            <div class="mb-4">
+                <div class="bg-surface p-3 rounded-lg mb-2">
+                    <p class="text-sm text-primary">Hi! I'm here to help you with your design project. Need any assistance with uploading or style selection?</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t border-secondary-200">
+            <div class="flex space-x-2">
+                <input type="text" placeholder="Ask about design..." class="flex-1 px-3 py-2 border border-secondary-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-accent" />
+                <button class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-accent-500 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let uploadedImages = [];
+        let selectedStyle = null;
+        let currentStep = 1;
+        let processingInterval = null;
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Chat widget toggle
+        function toggleChat() {
+            const chatWidget = document.getElementById('chat-widget');
+            chatWidget.classList.toggle('hidden');
+        }
+
+        // File upload handling
+        function handleDrop(e) {
+            e.preventDefault();
+            const dropZone = document.getElementById('drop-zone');
+            dropZone.classList.remove('border-accent');
+            dropZone.classList.add('border-secondary-300');
+            
+            const files = e.dataTransfer.files;
+            processFiles(files);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            const dropZone = document.getElementById('drop-zone');
+            dropZone.classList.remove('border-secondary-300');
+            dropZone.classList.add('border-accent');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            const dropZone = document.getElementById('drop-zone');
+            dropZone.classList.remove('border-accent');
+            dropZone.classList.add('border-secondary-300');
+        }
+
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            processFiles(files);
+        }
+
+        function processFiles(files) {
+            if (files.length === 0) return;
+
+            // Show upload progress
+            document.getElementById('upload-progress').classList.remove('hidden');
+            const progressList = document.getElementById('progress-list');
+            progressList.innerHTML = '';
+
+            Array.from(files).forEach((file, index) => {
+                if (file.type.startsWith('image/')) {
+                    const progressItem = createProgressItem(file.name, index);
+                    progressList.appendChild(progressItem);
+                    
+                    // Simulate upload progress
+                    simulateUpload(file, index);
+                }
+            });
+        }
+
+        function createProgressItem(fileName, index) {
+            const div = document.createElement('div');
+            div.className = 'flex items-center justify-between p-3 bg-white rounded-lg border border-secondary-200';
+            div.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span class="text-sm font-medium text-primary">${fileName}</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-24 bg-secondary-200 rounded-full h-2 mr-3">
+                        <div class="bg-accent h-2 rounded-full transition-all duration-300" style="width: 0%" id="progress-${index}"></div>
+                    </div>
+                    <span class="text-xs text-secondary-500" id="status-${index}">0%</span>
+                </div>
+            `;
+            return div;
+        }
+
+        function simulateUpload(file, index) {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Add to uploaded images
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        uploadedImages.push({
+                            name: file.name,
+                            url: e.target.result,
+                            file: file
+                        });
+                        
+                        updateImageGrid();
+                        
+                        // Hide upload progress after all files are processed
+                        if (uploadedImages.length === document.querySelectorAll('[id^="progress-"]').length) {
+                            setTimeout(() => {
+                                document.getElementById('upload-progress').classList.add('hidden');
+                                document.getElementById('preview-section').style.display = 'block';
+                            }, 500);
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+                
+                document.getElementById(`progress-${index}`).style.width = progress + '%';
+                document.getElementById(`status-${index}`).textContent = Math.round(progress) + '%';
+            }, 100);
+        }
+
+        function updateImageGrid() {
+            const imageGrid = document.getElementById('image-grid');
+            imageGrid.innerHTML = '';
+            
+            uploadedImages.forEach((image, index) => {
+                const div = document.createElement('div');
+                div.className = 'relative group';
+                div.innerHTML = `
+                    <img src="${image.url}" alt="Uploaded room photo ${index + 1} ready for AI enhancement" class="w-full h-32 object-cover rounded-lg">
+                    <button onclick="removeImage(${index})" class="absolute top-2 right-2 bg-error text-white w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                        ${image.name}
+                    </div>
+                `;
+                imageGrid.appendChild(div);
+            });
+        }
+
+        function removeImage(index) {
+            uploadedImages.splice(index, 1);
+            updateImageGrid();
+            
+            if (uploadedImages.length === 0) {
+                document.getElementById('preview-section').style.display = 'none';
+            }
+        }
+
+        function clearAllImages() {
+            uploadedImages = [];
+            document.getElementById('preview-section').style.display = 'none';
+            document.getElementById('file-input').value = '';
+        }
+
+        function proceedToStyleSelection() {
+            if (uploadedImages.length === 0) {
+                alert('Please upload at least one image to continue.');
+                return;
+            }
+            
+            document.getElementById('style-selection').style.display = 'block';
+            updateBreadcrumb(2);
+            
+            // Scroll to style selection
+            document.getElementById('style-selection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectStyle(style) {
+            selectedStyle = style;
+            
+            // Update visual selection
+            document.querySelectorAll('.style-option').forEach(option => {
+                option.classList.remove('ring-2', 'ring-accent');
+            });
+            
+            document.querySelector(`[data-style="${style}"]`).classList.add('ring-2', 'ring-accent');
+            
+            // Enable process button
+            document.getElementById('process-btn').disabled = false;
+            document.getElementById('process-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        function startAIProcessing() {
+            if (!selectedStyle || uploadedImages.length === 0) {
+                alert('Please select a style and upload images first.');
+                return;
+            }
+            
+            document.getElementById('processing-section').style.display = 'block';
+            updateBreadcrumb(3);
+            
+            // Scroll to processing section
+            document.getElementById('processing-section').scrollIntoView({ behavior: 'smooth' });
+            
+            // Start processing simulation
+            simulateAIProcessing();
+        }
+
+        function simulateAIProcessing() {
+            const steps = ['analysis', 'style', 'enhancement', 'finalize'];
+            let currentStepIndex = 0;
+            
+            function processStep() {
+                if (currentStepIndex >= steps.length) {
+                    // Processing complete
+                    setTimeout(() => {
+                        showResults();
+                    }, 1000);
+                    return;
+                }
+                
+                const stepName = steps[currentStepIndex];
+                const stepElement = document.getElementById(`step-${stepName}`);
+                const progressBar = stepElement.querySelector('.bg-accent');
+                const icon = stepElement.querySelector('.w-6');
+                
+                // Update step to active
+                icon.parentElement.classList.remove('bg-secondary-200');
+                icon.parentElement.classList.add('bg-accent');
+                icon.classList.add('animate-spin');
+                
+                // Animate progress bar
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(progressInterval);
+                        
+                        // Complete this step
+                        icon.classList.remove('animate-spin');
+                        icon.innerHTML = `
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        `;
+                        
+                        // Move to next step
+                        currentStepIndex++;
+                        setTimeout(processStep, 500);
+                    }
+                    
+                    if (progressBar) {
+                        progressBar.style.width = progress + '%';
+                    }
+                }, 200);
+            }
+            
+            processStep();
+        }
+
+        function showResults() {
+            updateBreadcrumb(4);
+            
+            // Set result images (using mock enhanced versions)
+            const originalImage = uploadedImages[0];
+            document.getElementById('original-result').src = originalImage.url;
+            
+            // Mock enhanced image (in real app, this would come from AI service)
+            document.getElementById('enhanced-result').src = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+            
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        function closeResultsModal() {
+            document.getElementById('results-modal').classList.add('hidden');
+        }
+
+        function downloadResult() {
+            // In a real app, this would download the enhanced image
+            alert('Enhanced image download started!');
+        }
+
+        function viewInGallery() {
+            window.location.href = 'design_results_display.html';
+        }
+
+        function startNewProject() {
+            // Reset everything
+            uploadedImages = [];
+            selectedStyle = null;
+            currentStep = 1;
+            
+            document.getElementById('preview-section').style.display = 'none';
+            document.getElementById('style-selection').style.display = 'none';
+            document.getElementById('processing-section').style.display = 'none';
+            document.getElementById('upload-progress').classList.add('hidden');
+            document.getElementById('results-modal').classList.add('hidden');
+            document.getElementById('file-input').value = '';
+            
+            updateBreadcrumb(1);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateBreadcrumb(step) {
+            currentStep = step;
+            
+            // Reset all steps
+            for (let i = 1; i <= 4; i++) {
+                const stepElement = document.querySelector(`.flex.items-center:nth-child(${i * 2 - 1})`);
+                if (stepElement) {
+                    const circle = stepElement.querySelector('.w-8');
+                    const text = stepElement.querySelector('span');
+                    
+                    if (i <= step) {
+                        circle.classList.remove('bg-secondary-200', 'text-secondary-500');
+                        circle.classList.add('bg-accent', 'text-white');
+                        text.classList.remove('text-secondary-500');
+                        text.classList.add('text-primary', 'font-medium');
+                    } else {
+                        circle.classList.remove('bg-accent', 'text-white');
+                        circle.classList.add('bg-secondary-200', 'text-secondary-500');
+                        text.classList.remove('text-primary', 'font-medium');
+                        text.classList.add('text-secondary-500');
+                    }
+                }
+            }
+        }
+
+        function cancelProcessing() {
+            if (processingInterval) {
+                clearInterval(processingInterval);
+            }
+            
+            document.getElementById('processing-section').style.display = 'none';
+            updateBreadcrumb(2);
+        }
+
+        function saveProject() {
+            alert('Project saved to your dashboard!');
+        }
+
+        function undoAction() {
+            // Implement undo functionality
+            console.log('Undo action');
+        }
+
+        function redoAction() {
+            // Implement redo functionality
+            console.log('Redo action');
+        }
+
+        function processAISearch() {
+            const searchInput = document.getElementById('ai-search');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                alert(`AI analyzing: "${query}". This would provide style suggestions based on your description.`);
+                // In real app, this would process the natural language query
+            }
+        }
+
+        function handleSearchKeypress(e) {
+            if (e.key === 'Enter') {
+                processAISearch();
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBreadcrumb(1);
+            
+            // Add CSS for style options
+            const style = document.createElement('style');
+            style.textContent = `
+                .style-option {
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    padding: 0.5rem;
+                    border-radius: 0.5rem;
+                }
+                .style-option:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                }
+                .processing-step {
+                    transition: all 0.3s ease;
+                }
+                #process-btn:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
